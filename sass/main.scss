@@ -1,0 +1,82 @@
+@use 'variables' as *;
+
+@mixin flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    @include flex;
+    
+    height: $header-height;
+    background-color: $color-1;
+
+    color: $color-2;
+    font: bold $header-font-size 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#timeline {
+    #timeline-list {
+        position: relative;
+
+        list-style: none;
+        margin: 4em auto;
+
+        &:before {
+            content: '';
+            background-color: $color-1;
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+        }
+         
+    }
+
+    .timeline-list-item {
+        margin-left: 52%;
+        max-width: 26em;
+        
+        .timeline-item {
+            margin-bottom: 4em;
+            
+            time {
+                background-color: $color-1;
+                color: $color-2;
+                font-size: 1em;
+                padding: 0.3em 0.5em;
+            }
+            
+            time:before {
+                content: '';
+                background-color: $color-1;
+                position: absolute;
+                left: calc(50vw - 1em);
+                width: 1em;
+                height: 1em;
+                transform: rotate(45deg);
+                outline: 10px solid $color-2;
+            }
+            
+            .timeline-item-title {
+                font-size: 1.6em;
+            }
+            
+            .timeline-item-text {
+                font-size: 1.1em;
+            }
+        }
+    }
+    
+    .timeline-list-item:nth-child(even)
+    {
+        margin-left: 16%;
+    }    
+}
