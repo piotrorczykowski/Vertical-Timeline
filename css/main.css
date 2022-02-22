@@ -56,5 +56,6 @@ body {
   font-size: 1.1em;
 }
 #timeline .timeline-list-item:nth-child(even) {
-  margin-left: 16%;
+  margin: auto;
+  margin-right: 54%;
 }
