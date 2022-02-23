@@ -1,3 +1,99 @@
+@-webkit-keyframes rotate {
+  from {
+    transform: rotate(45deg);
+  }
+  to {
+    transform: rotate(135deg);
+  }
+}
+@keyframes rotate {
+  from {
+    transform: rotate(45deg);
+  }
+  to {
+    transform: rotate(135deg);
+  }
+}
+@-webkit-keyframes rotateBackwards {
+  from {
+    transform: rotate(135deg);
+  }
+  to {
+    transform: rotate(45deg);
+  }
+}
+@keyframes rotateBackwards {
+  from {
+    transform: rotate(135deg);
+  }
+  to {
+    transform: rotate(45deg);
+  }
+}
+@-webkit-keyframes changeColor1 {
+  from {
+    box-shadow: inset 0px 0 0 0 #ef795a;
+  }
+  to {
+    box-shadow: inset 1000px 0 0 0 #ef795a;
+  }
+}
+@keyframes changeColor1 {
+  from {
+    box-shadow: inset 0px 0 0 0 #ef795a;
+  }
+  to {
+    box-shadow: inset 1000px 0 0 0 #ef795a;
+  }
+}
+@-webkit-keyframes changeColor2 {
+  from {
+    box-shadow: inset 1000px 0 0 0 #ef795a;
+  }
+  to {
+    box-shadow: inset 1000px 0 0 0 #a83279;
+  }
+}
+@keyframes changeColor2 {
+  from {
+    box-shadow: inset 1000px 0 0 0 #ef795a;
+  }
+  to {
+    box-shadow: inset 1000px 0 0 0 #a83279;
+  }
+}
+@-webkit-keyframes changeColorBackward1 {
+  from {
+    box-shadow: inset 1000px 0 0 0 #a83279;
+  }
+  to {
+    box-shadow: inset 1000px 0 0 0 #ef795a;
+  }
+}
+@keyframes changeColorBackward1 {
+  from {
+    box-shadow: inset 1000px 0 0 0 #a83279;
+  }
+  to {
+    box-shadow: inset 1000px 0 0 0 #ef795a;
+  }
+}
+@-webkit-keyframes changeColorBackward2 {
+  from {
+    box-shadow: inset 1000px 0 0 0 #ef795a;
+  }
+  to {
+    box-shadow: inset 0px 0 0 0 #ef795a;
+  }
+}
+@keyframes changeColorBackward2 {
+  from {
+    box-shadow: inset 1000px 0 0 0 #ef795a;
+  }
+  to {
+    box-shadow: inset 0px 0 0 0 #ef795a;
+  }
+}
 body {
   margin: 0;
   padding: 0;
@@ -38,7 +134,7 @@ body {
   color: white;
   font-size: 1em;
   padding: 0.3em 0.5em;
-  visibility: hidden;
+  transition: all 0.8s;
 }
 #timeline .timeline-list-item .timeline-item time:before {
   content: "";
@@ -49,17 +145,37 @@ body {
   height: 1em;
   transform: rotate(45deg);
   outline: 10px solid white;
-  visibility: visible;
 }
 #timeline .timeline-list-item .timeline-item .timeline-item-title {
   font-size: 1.6em;
   visibility: hidden;
+  opacity: 0;
+  transition: all 0.8s;
 }
 #timeline .timeline-list-item .timeline-item .timeline-item-text {
   font-size: 1.1em;
   visibility: hidden;
+  opacity: 0;
+  transition: all 0.8s;
 }
 #timeline .timeline-list-item:nth-child(even) {
   margin: auto;
   margin-right: 54%;
+}
+#timeline .timeline-list-item time:before {
+  -webkit-animation: rotateBackwards 0.4s;
+          animation: rotateBackwards 0.4s;
+}
+#timeline .timeline-list-item time {
+  -webkit-animation: changeColorBackward1 2s ease, changeColorBackward2 0.3s 0.4s ease forwards;
+          animation: changeColorBackward1 2s ease, changeColorBackward2 0.3s 0.4s ease forwards;
+}
+#timeline .timeline-list-item:hover time:before {
+  -webkit-animation: rotate 0.4s;
+          animation: rotate 0.4s;
+  background-color: #a83279;
+}
+#timeline .timeline-list-item:hover time {
+  -webkit-animation: changeColor1 2s ease, changeColor2 0.3s 0.2s ease forwards;
+          animation: changeColor1 2s ease, changeColor2 0.3s 0.2s ease forwards;
 }

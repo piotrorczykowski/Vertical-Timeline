@@ -10,12 +10,13 @@ const isInViewport = (element) => {
 }
 
 //  Show or hide items
-const showHideItems = (item, option) => {
+const showHideItems = (item, optionFirst, optionSecond) => {
     const childrenOfListItem = item.children[0].children
 
-    for(let i=0; i<3; i++)
+    for(let i=1; i<3; i++)
     {
-        childrenOfListItem[i].style.visibility = option
+        childrenOfListItem[i].style.visibility = optionFirst
+        childrenOfListItem[i].style.opacity = optionSecond
     }
 }
 
@@ -24,10 +25,10 @@ const changeItem = () => {
 
     listItems.forEach(item => {
         if(isInViewport(item)) {
-            showHideItems(item, 'visible')
+            showHideItems(item, 'visible', '1')
         }
         else {
-            showHideItems(item, 'hidden')
+            showHideItems(item, 'hidden', '0')
         }
     });
 }

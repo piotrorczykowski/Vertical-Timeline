@@ -6,6 +6,43 @@
     justify-content: center;
 }
 
+//      Animations      //
+
+@keyframes rotate {
+    from { transform: rotate(45deg); }
+    to { transform: rotate(135deg); }
+}
+
+@keyframes rotateBackwards {
+    from { transform: rotate(135deg); }
+    to { transform: rotate(45deg); }
+}
+
+
+@keyframes changeColor1 {
+    from { box-shadow: inset 0px 0 0 0 $color-3; }
+    to { box-shadow: inset 1000px 0 0 0 $color-3; }
+}
+
+@keyframes changeColor2 {
+    from { box-shadow: inset 1000px 0 0 0 $color-3; }
+    to { box-shadow: inset 1000px 0 0 0 $color-4; }
+}
+
+
+@keyframes changeColorBackward1 {
+    from { box-shadow: inset 1000px 0 0 0 $color-4; }
+    to { box-shadow: inset 1000px 0 0 0 $color-3; }
+}
+
+@keyframes changeColorBackward2 {
+    from { box-shadow: inset 1000px 0 0 0 $color-3; }
+    to { box-shadow: inset 0px 0 0 0 $color-3; }
+}
+
+//      End     //
+
+
 
 body {
     margin: 0;
@@ -43,7 +80,6 @@ body {
     .timeline-list-item {
         margin-left: 52%;
         max-width: 26em;
-
         
         .timeline-item {
             margin-bottom: 4em;
@@ -53,29 +89,32 @@ body {
                 color: $color-2;
                 font-size: 1em;
                 padding: 0.3em 0.5em;
-                visibility: hidden;
+                transition: all 0.8s;
+
+                &:before {
+                    content: '';
+                    background-color: $color-1;
+                    position: absolute;
+                    left: calc(50vw - 1em);
+                    width: 1em;
+                    height: 1em;
+                    transform: rotate(45deg);
+                    outline: 10px solid $color-2;
+                }
             }
-            
-            time:before {
-                content: '';
-                background-color: $color-1;
-                position: absolute;
-                left: calc(50vw - 1em);
-                width: 1em;
-                height: 1em;
-                transform: rotate(45deg);
-                outline: 10px solid $color-2;
-                visibility: visible;
-            }
-            
+                        
             .timeline-item-title {
                 font-size: 1.6em;
                 visibility: hidden;
+                opacity: 0;
+                transition: all 0.8s;
             }
             
             .timeline-item-text {
                 font-size: 1.1em;
                 visibility: hidden;
+                opacity: 0;
+                transition: all 0.8s;
             }
         }
     }
@@ -84,5 +123,33 @@ body {
     {
         margin: auto;
         margin-right: 54%;
-    }    
+    }
+
+
+    //      Animations      //
+
+    .timeline-list-item {
+        time:before {
+            animation: rotateBackwards 0.4s;
+        }
+
+        time {
+            animation: changeColorBackward1 2s ease,
+                       changeColorBackward2 0.3s 0.4s ease forwards;
+        }
+    }
+
+    .timeline-list-item:hover {
+        time:before {
+            animation: rotate 0.4s;
+            background-color: $color-4;
+        }
+        
+        time {
+            animation: changeColor1 2s ease,
+                       changeColor2 0.3s 0.2s ease forwards;
+        }
+    }
+
+    //      End     //
 }
