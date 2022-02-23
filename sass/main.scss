@@ -43,6 +43,7 @@ body {
     .timeline-list-item {
         margin-left: 52%;
         max-width: 26em;
+
         
         .timeline-item {
             margin-bottom: 4em;
@@ -52,6 +53,7 @@ body {
                 color: $color-2;
                 font-size: 1em;
                 padding: 0.3em 0.5em;
+                visibility: hidden;
             }
             
             time:before {
@@ -63,14 +65,17 @@ body {
                 height: 1em;
                 transform: rotate(45deg);
                 outline: 10px solid $color-2;
+                visibility: visible;
             }
             
             .timeline-item-title {
                 font-size: 1.6em;
+                visibility: hidden;
             }
             
             .timeline-item-text {
                 font-size: 1.1em;
+                visibility: hidden;
             }
         }
     }
