@@ -179,3 +179,35 @@ body #timeline .timeline-list-item:hover time {
   -webkit-animation: changeColor1 2s ease, changeColor2 0.3s 0.2s ease forwards;
           animation: changeColor1 2s ease, changeColor2 0.3s 0.2s ease forwards;
 }
+
+@media (max-width: 1000px) {
+  body #timeline #timeline-list:before {
+    margin-left: -40%;
+  }
+  body #timeline #timeline-list .timeline-list-item {
+    max-width: 40em;
+    margin-left: 15%;
+    margin-right: 1em;
+  }
+  body #timeline #timeline-list .timeline-list-item:nth-child(even) {
+    margin-right: 0;
+  }
+  body #timeline #timeline-list .timeline-list-item .timeline-item time:before {
+    margin-left: calc(-40% + 1vw);
+  }
+}
+@media (max-width: 600px) {
+  body #header {
+    font-size: 2.8em;
+  }
+  body #timeline #timeline-list:before {
+    margin-left: -45%;
+  }
+  body #timeline #timeline-list .timeline-list-item {
+    margin-left: 5%;
+    margin-right: 2em;
+  }
+  body #timeline #timeline-list .timeline-item time:before {
+    left: calc(45% - 0.5em);
+  }
+}

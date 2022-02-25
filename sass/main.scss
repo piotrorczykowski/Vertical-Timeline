@@ -1,5 +1,17 @@
 @use 'variables' as *;
 
+@mixin phone {
+    @media (max-width: 600px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: 1000px) {
+        @content;
+    }
+}
+
 @mixin hideShowAndTransition {
     visibility: hidden;
     opacity: 0;
@@ -153,3 +165,71 @@ body {
         }
     }
 }
+
+//      Tablet       //
+
+@include tablet {
+    body {
+        #timeline {
+            #timeline-list {
+                &:before {
+                    margin-left: -40%;
+                }
+
+                .timeline-list-item {
+                    max-width: 40em;
+                    margin-left: 15%;
+                    margin-right: 1em;
+
+                    &:nth-child(even) {
+                        margin-right: 0;
+                    }
+
+                    .timeline-item {
+                        time {
+                            &:before {
+                                margin-left: calc(-40% + 1vw);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//      End     //
+
+
+//      Phonw       //
+
+@include phone {
+    body {
+        #header {
+            font-size: $header-phone-font-size;
+        }
+
+        #timeline {
+            #timeline-list {
+                &:before {
+                    margin-left: -45%;
+                }
+
+                .timeline-list-item {
+                    margin-left: 5%;
+                    margin-right: 2em;
+                }
+
+                .timeline-item {
+                    time {
+                        &:before {
+                            left: calc(45% - 0.5em);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//      End     //
