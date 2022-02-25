@@ -1,9 +1,9 @@
 @use 'variables' as *;
 
-@mixin flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@mixin hideShowAndTransition {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.8s;
 }
 
 //      Animations      //
@@ -47,109 +47,109 @@
 body {
     margin: 0;
     padding: 0;
-}
 
-#header {
-    @include flex;
-    
-    height: $header-height;
-    background-color: $color-1;
+    font-family: $font-type;
 
-    color: $color-2;
-    font: bold $header-font-size 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-#timeline {
-    #timeline-list {
-        position: relative;
-
-        list-style: none;
-        margin: 4em auto;
-
-        &:before {
-            content: '';
-            background-color: $color-1;
-            position: absolute;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-        }
-         
-    }
-
-    .timeline-list-item {
-        margin-left: 52%;
-        max-width: 26em;
+    #header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         
-        .timeline-item {
-            margin-bottom: 4em;
-            
-            time {
+        height: $header-height;
+        background-color: $color-1;
+    
+        color: $color-2;
+        font-size: $header-font-size;
+        font-weight: bold;
+    }
+    
+    #timeline {
+        #timeline-list {
+            position: relative;
+    
+            list-style: none;
+            margin: 4em auto;
+    
+            //  Vertical line
+            &:before {
+                content: '';
                 background-color: $color-1;
-                color: $color-2;
-                font-size: 1em;
-                padding: 0.3em 0.5em;
-                transition: all 0.8s;
-
-                &:before {
-                    content: '';
+                position: absolute;
+                left: 50%;
+                width: 2px;
+                height: 100%;
+            }
+             
+        }
+    
+        .timeline-list-item {
+            margin-left: 52%;
+            max-width: 26em;
+    
+            //  Left items of the timeline
+            &:nth-child(even) {
+                margin: auto;
+                margin-right: 54%;
+            }
+        
+            .timeline-item {
+                margin-bottom: 4em;
+                
+                time {
                     background-color: $color-1;
-                    position: absolute;
-                    left: calc(50vw - 1em);
-                    width: 1em;
-                    height: 1em;
-                    transform: rotate(45deg);
-                    outline: 10px solid $color-2;
+                    color: $color-2;
+                    font-size: $time-font-size;
+                    padding: 0.3em 0.5em;
+                    transition: all 0.8s;
+                    
+                    //  Timeline icon
+                    &:before {
+                        content: '';
+                        background-color: $color-1;
+                        position: absolute;
+                        left: calc(50vw - 1em); // this line "center" the icons with the vertical line
+                        width: $icon-size;
+                        height: $icon-size;
+                        transform: rotate(45deg);
+                        outline: 10px solid $color-2;
+                    }
+                }
+                            
+                .timeline-item-title {
+                    font-size: $title-font-size;
+                    @include hideShowAndTransition;
+                }
+                
+                .timeline-item-text {
+                    font-size: $text-font-size;
+                    @include hideShowAndTransition;
                 }
             }
-                        
-            .timeline-item-title {
-                font-size: 1.6em;
-                visibility: hidden;
-                opacity: 0;
-                transition: all 0.8s;
-            }
-            
-            .timeline-item-text {
-                font-size: 1.1em;
-                visibility: hidden;
-                opacity: 0;
-                transition: all 0.8s;
-            }
-        }
-    }
     
-    .timeline-list-item:nth-child(even)
-    {
-        margin: auto;
-        margin-right: 54%;
-    }
-
-
-    //      Animations      //
-
-    .timeline-list-item {
-        time:before {
-            animation: rotateBackwards 0.4s;
-        }
-
-        time {
-            animation: changeColorBackward1 2s ease,
-                       changeColorBackward2 0.3s 0.4s ease forwards;
-        }
-    }
-
-    .timeline-list-item:hover {
-        time:before {
-            animation: rotate 0.4s;
-            background-color: $color-4;
-        }
-        
-        time {
-            animation: changeColor1 2s ease,
-                       changeColor2 0.3s 0.2s ease forwards;
+            //      Animations      //
+    
+            time:before {
+                animation: rotateBackwards 0.4s;
+            }
+    
+            time {
+                animation: changeColorBackward1 2s ease,
+                           changeColorBackward2 0.3s 0.4s ease forwards;
+            }
+    
+            &:hover {
+                time:before {
+                    animation: rotate 0.4s;
+                    background-color: $color-4;
+                }
+                
+                time {
+                    animation: changeColor1 2s ease,
+                               changeColor2 0.3s 0.2s ease forwards;
+                }
+            } 
+    
+            //      End     //
         }
     }
-
-    //      End     //
 }
